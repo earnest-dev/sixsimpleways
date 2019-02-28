@@ -1,5 +1,6 @@
 var gulp = require("gulp")
 var browserSync = require("browser-sync").create()
+var ghpages = require("gh-pages")
 
 //IMAGES
 var cleanCSS = require('gulp-clean-css')
@@ -45,5 +46,10 @@ gulp.task("watch", function(){
     gulp.watch("src/js/*", gulp.series('js'))
     gulp.watch("src/img/*", gulp.series('images'))
 }) 
+
+gulp.task("deploy", function(done) {
+    ghpages.publish("dist")
+    done()
+})
 
 gulp.task("default", gulp.series("html","css","js","images","watch"))
