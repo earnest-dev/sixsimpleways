@@ -1,72 +1,57 @@
-* {
-	box-sizing: border-box;
+:root {
+	--column-width: 10vh;
 }
 
-body {
-	margin: 0;
+img {
+	width: 100%;
+	/*filter: saturate(0) contrast(100);*/
+	mix-blend-mode: darken;
 }
 
 section {
-	border-bottom: 10px solid #000;
+	border-bottom: 0;
     position: fixed;
-    padding: 20px;
+	padding: 20px;
+	border-bottom: 10px solid #000;
+	background: #fa2338;
 }
 
 section#element::-webkit-scrollbar, ::-webkit-scrollbar { 
-    display: none; 
+    display: none;
 }
 
 section:nth-child(1), section:nth-child(2) {
-	left: 10vh;
 	left: 0;
-	transform: rotate(-90deg) translate(-45%, -450%);
-	height: 10vh;
+	transform: rotate(-90deg) translate(calc(-50vh + (var(--column-width) / 2)), calc(-50vh + (var(--column-width) / 2)));
+	height: var(--column-width);
     width: 100vh;
 }
 
 section:nth-child(2) {
-	left: 10vh;
+	left: var(--column-width);
 }
 
 section:nth-child(3), section:nth-child(4) {
 	height: 100vh;
 	border-right: 10px solid #000;
 	border-bottom: none;
-	width: calc((100vw - 20vh) / 2);
+	width: calc((100vw - (2 * var(--column-width))) / 2);
 	overflow-y: scroll;
 }
 
 section:nth-child(3) {
-	left: 20vh;
+	left: calc(var(--column-width) * 2)
 }
 
 section:nth-child(4) {
 	left: auto;
 	right: 0;
 	border: none;
+	padding: 0;
 }
 
 h2 {
-	margin: 0;
-	float: left;
-	line-height: calc(10vh - 50px);
-	font-size: 80px;
+	line-height: calc(var(--column-width) - 50px);
 	white-space: nowrap;
-}
-
-h3 {
-	font-size: 48px;
-}
-
-p {
-	font-size: 18px;
-}
-
-h3, p {
-	margin: 0 0 30px;
-	line-height: 1.6;
-}
-
-img {
-	width: 100%;
+	font-size: calc(var(--column-width) * 0.6);
 }

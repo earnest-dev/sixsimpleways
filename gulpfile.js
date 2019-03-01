@@ -2,10 +2,12 @@ var gulp = require("gulp")
 var browserSync = require("browser-sync").create()
 var ghpages = require("gh-pages")
 
-//IMAGES
+//IMAGES & CSS
 var cleanCSS = require('gulp-clean-css')
+var postcss = require('gulp-postcss')
 var sourcemaps = require('gulp-sourcemaps')
 var imagemin = require('gulp-imagemin')
+var concat = require('gulp-concat')
 
 gulp.task("html", function() {
     return gulp.src("src/*")
@@ -14,8 +16,20 @@ gulp.task("html", function() {
 })
 
 gulp.task("css", function() {
-    return gulp.src("src/css/*")
+    return gulp.src([
+        'src/css/reset.css',
+        'src/css/typography.css',
+        'src/css/app.css'
+    ])
         .pipe(sourcemaps.init())
+        .pipe(postcss([
+            require("autoprefixer"),
+            require("postcss-preset-env")({
+                stage: 1,
+                browsers: ["IE 11","last 2 versions"]
+            })
+        ]))
+        .pipe(concat("app.css"))
         .pipe(cleanCSS())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest("dist/css/"))

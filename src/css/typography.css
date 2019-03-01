@@ -1,0 +1,12 @@
+h3 {
+	font-size: 48px;
+}
+
+p {
+	font-size: 18px;
+}
+
+h3, p {
+	margin: 0 0 30px;
+	line-height: 1.6;
+}
