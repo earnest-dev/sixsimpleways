@@ -42,6 +42,12 @@ gulp.task("js", function() {
         .pipe(browserSync.stream())
 })
 
+gulp.task("fonts", function() {
+    return gulp.src("src/fonts/*")
+        .pipe(gulp.dest("dist/fonts/"))
+        .pipe(browserSync.stream())
+})
+
 gulp.task("images", function() {
     return gulp.src("src/img/*")
         .pipe(imagemin())
@@ -66,4 +72,4 @@ gulp.task("deploy", function(done) {
     done()
 })
 
-gulp.task("default", gulp.series("html","css","js","images","watch"))
+gulp.task("default", gulp.series("html","fonts","css","js","images","watch"))
