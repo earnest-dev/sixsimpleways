@@ -53,12 +53,13 @@ function showpage(thispage) {
             page = true
             $('.ticker').removeClass('out')
             
+            /*
             var imglist = eval("imgArray." + thispage);
-            
             for (let i = 0; i < imglist.length; i++) {
                 console.log(imglist[i])
                 $('#images').append('<img src="img/' + thispage + '/' + imglist[i] + '">')
             }
+            */
         }
         $("#page").removeClass('out')
     });
@@ -92,6 +93,7 @@ function changecol(newcol) {
 
 //Ready
 $(document).ready(function() {
+    /*
     $('#nav h2 a').each(function() {
         let thisnum = $(this).data('page')
         if (thisnum != 'home') {
@@ -106,6 +108,7 @@ $(document).ready(function() {
             });
         }
     })
+    */
     showpage('home')
 })
 
