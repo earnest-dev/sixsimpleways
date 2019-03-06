@@ -16,9 +16,9 @@ function tickertape() {
 }
 
 
-
 //Links
-let page = false;
+let page = false
+let imgArray = []
 
 $('#nav a').click(function(e) {
     e.preventDefault();
@@ -44,12 +44,21 @@ $('#nav a').click(function(e) {
 function showpage(thispage) {
     $.get( "page-" + thispage + ".html", function( data ) {
         $("#page").html( data )
+
         tickertape()
         if (thispage == 'home') {
             page = false
-            $('')
+            $('.ticker').addClass('out')
         } else {
             page = true
+            $('.ticker').removeClass('out')
+            
+            var imglist = eval("imgArray." + thispage);
+            
+            for (let i = 0; i < imglist.length; i++) {
+                console.log(imglist[i])
+                $('#images').append('<img src="img/' + thispage + '/' + imglist[i] + '">')
+            }
         }
         $("#page").removeClass('out')
     });
@@ -83,6 +92,20 @@ function changecol(newcol) {
 
 //Ready
 $(document).ready(function() {
+    $('#nav h2 a').each(function() {
+        let thisnum = $(this).data('page')
+        if (thisnum != 'home') {
+            $.ajax({
+                url: "imageloop.php",
+                type: "POST",
+                data: ({dir: thisnum}),
+                dataType: "json",
+                success: function (data) {
+                    imgArray[thisnum] = data
+                }
+            });
+        }
+    })
     showpage('home')
 })
 

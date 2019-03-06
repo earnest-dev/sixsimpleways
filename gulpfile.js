@@ -10,7 +10,7 @@ var imagemin = require('gulp-imagemin')
 var concat = require('gulp-concat')
 
 gulp.task("html", function() {
-    return gulp.src("src/*")
+    return gulp.src(["src/*.html","src/*.php"])
         .pipe(gulp.dest("dist/"))
         .pipe(browserSync.stream())
 })
@@ -49,7 +49,7 @@ gulp.task("fonts", function() {
 })
 
 gulp.task("images", function() {
-    return gulp.src("src/img/*")
+    return gulp.src("src/img/**/*")
         .pipe(imagemin())
         .pipe(gulp.dest("dist/img/"))
 })
@@ -61,7 +61,7 @@ gulp.task("watch", function(){
         }
     })
 
-    gulp.watch("src/*.html", gulp.series('html')).on("change", browserSync.reload)
+    gulp.watch(["src/*.html","src/*.php"], gulp.series('html')).on("change", browserSync.reload)
     gulp.watch("src/css/*", gulp.series('css'))
     gulp.watch("src/js/*", gulp.series('js'))
     gulp.watch("src/img/*", gulp.series('images'))
