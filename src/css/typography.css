@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Soulcraft';
-    src: url('/fonts/Soulcraft.ttf') format('truetype');
+    src: url('../fonts/Soulcraft.ttf') format('truetype');
 }
 
 @custom-media --narrow-window (max-width: 900px);

@@ -18,31 +18,48 @@ function tickertape() {
 
 
 //Links
+let page = false;
+
 $('#nav a').click(function(e) {
     e.preventDefault();
+    $('#page').removeClass('in')
     $(window).scrollTop(0)
-    var thispage = $(this).data('page')
-    showpage(thispage)
+    showpage($(this).data('page'))
+    changecol($(this).data('bg'))
 })
 
 function showpage(thispage) {
     $.get( "page-" + thispage + ".html", function( data ) {
-        $("#page").html( data );
-        tickertape();
+        $("#page").html( data )
+        $("#page").addClass('in')
+        tickertape()
+        if (thispage == 'home') {
+            page = false
+        } else {
+            page = true
+        }    
     });
 }
 
 //Scroll
-$(window).on('scroll', function(e){
+$(window).on('scroll', function(){
+    if (page == true) {
+        var scroll = $(window).scrollTop()
     
+        var fraction = scroll / ($('#copy')[0].scrollHeight - $(window).height() + $('#copy').offset().top)
+        var imgscroll = $('#images')[0].scrollHeight - $('#images').outerHeight()
 
-    var scroll = $(window).scrollTop()
-    
-    var fraction = scroll / ($('#copy').outerHeight() - $(window).height())
-    var imgscroll = fraction * ($('#images').outerHeight() - $(window).height())
+        console.log(  scroll + ": " + (fraction)   )
 
-    $('#images').css('top',(0 - imgscroll) + 'px')
+        $('#images img').css('transform','translateY(' + (0 - (fraction * imgscroll)) + 'px)')
+        $('#images').css('transform','translateY(' + (scroll) + 'px)')
+    }
 });
+
+//Colours
+function changecol(newcol) {
+    document.documentElement.style.setProperty('--bgcol', newcol);
+}
 
 //Ready
 $(document).ready(function() {

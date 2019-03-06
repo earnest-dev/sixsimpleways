@@ -12,8 +12,9 @@
 	}
 }
 
-body {
-	background-color: var(--bgcol)
+body, section{
+	background: var(--bgcol);
+	transition: 0.3s background-color;
 }
 
 #wrapper {
@@ -35,6 +36,12 @@ img {
 	height: 100%;
 	left: var(--column-width);
 	position: absolute;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+#page.in {
+	opacity: 1;
 }
 
 section {
@@ -42,7 +49,6 @@ section {
     position: absolute;
 	padding: 20px;
 	border-bottom: 10px solid #000;
-	background: var(--bgcol);
 }
 
 section#element::-webkit-scrollbar, ::-webkit-scrollbar { 
@@ -55,6 +61,7 @@ section#nav, section.ticker {
 	height: var(--column-width);
 	width: 100vh;
 	position: fixed;
+	z-index: 2;
 }
 
 section.ticker {
@@ -80,12 +87,13 @@ section.scroller#home {
 }
 
 section#images {
-	left: calc(   (100% - var(--column-width) ) / 2 + (var(--column-width)) );
 	border: none;
-	position: absolute;
 	padding: 0;
 	top:0;
-	width: calc((100% - 2 * var(--column-width)) / 2);
+	left: auto;
+	right: 0;
+	height: 100vh;
+	overflow: hidden;
 }
 
 h2 {
@@ -101,7 +109,7 @@ h2 span {
 }
 
 @media (--narrow-window) {
-	section {
+	section#nav, section.ticker {
 		transform: none !important;
 	}
 
@@ -111,24 +119,22 @@ h2 span {
 		top: var(--column-width);
 	}
 
-	section.ticker {
-		left: 0;
-		top: 0;
-	}
-
-	section#copy {
+	section.ticker, section#copy {
 		left: 0;
 	}
 
 	section.scroller {
-		top: var(--column-width);
+		top: var(--column-width) !important;
 		width: 50%;
-		height: calc(100vh - var(--column-width) * 2)
+	}
+
+	section#images {
+		position: fixed;
+		transform: none !important;
 	}
 
 	section.scroller#home {
-		top: 0;
-		height: calc(100vh - var(--column-width));
+		top: 0 !important;
 	}
 
 	h2 {
@@ -136,8 +142,11 @@ h2 span {
 	}
 }
 
-@media (--narrow-window) {
-	#images, img { display:none }
+@media (--mobile) {
+	#images, img {
+		display:none
+	}
+
 	section.scroller {
 		width: 100%;
 		border: none;
