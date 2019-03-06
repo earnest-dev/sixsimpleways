@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: application/json');
-
 $dir = $_POST['dir'];
 $arr = array();
 $path = realpath('img/' . $dir);
