@@ -111,7 +111,7 @@ section#images {
 h2 {
 	line-height: calc(var(--column-width) - 50px);
 	white-space: nowrap;
-	font-size: calc(var(--column-width) * 0.4);
+	font-size: calc(var(--column-width) * 0.3);
 	overflow: visible;
 }
 
