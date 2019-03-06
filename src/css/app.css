@@ -26,9 +26,12 @@ body, section{
 
 img {
 	width: 100%;
-	/*filter: saturate(0) contrast(100);*/
 	mix-blend-mode: multiply;
 	float: left;
+}
+
+.ticker, .ticker h2 {
+	transition: opacity 0.5s ease;
 }
 
 #page {
@@ -36,12 +39,20 @@ img {
 	height: 100%;
 	left: var(--column-width);
 	position: absolute;
-	opacity: 0;
-	transition: opacity 0.3s;
+	transition: all 0.5s ease;
+	transition-delay: 0.3s;
 }
 
-#page.in {
+.ticker, .ticker h2 {
 	opacity: 1;
+}
+
+#page.out {
+	left: calc(-150%);
+}
+
+#page.out .ticker h2, .ticker.out {
+	opacity: 0;
 }
 
 section {
@@ -62,6 +73,7 @@ section#nav, section.ticker {
 	width: 100vh;
 	position: fixed;
 	z-index: 2;
+	overflow: hidden;
 }
 
 section.ticker {

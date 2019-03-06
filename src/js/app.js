@@ -22,34 +22,54 @@ let page = false;
 
 $('#nav a').click(function(e) {
     e.preventDefault();
-    $('#page').removeClass('in')
+    $('#page').addClass('out')
     $(window).scrollTop(0)
-    showpage($(this).data('page'))
     changecol($(this).data('bg'))
+
+    let delay = 500
+
+    let thispage = $(this).data('page')
+    if (thispage == 'home') {
+        delay = 800
+        $('.ticker').addClass('out')
+    } else {
+        $('.ticker').removeClass('out')
+    }
+
+    setTimeout(function() {
+        showpage(thispage)
+    }, delay)
 })
 
 function showpage(thispage) {
     $.get( "page-" + thispage + ".html", function( data ) {
         $("#page").html( data )
-        $("#page").addClass('in')
         tickertape()
         if (thispage == 'home') {
             page = false
+            $('')
         } else {
             page = true
-        }    
+        }
+        $("#page").removeClass('out')
     });
 }
 
 //Scroll
-$(window).on('scroll', function(){
+$(window).on('scroll', function(e){
     if (page == true) {
         var scroll = $(window).scrollTop()
-    
-        var fraction = scroll / ($('#copy')[0].scrollHeight - $(window).height() + $('#copy').offset().top)
+        
+        let offset = 0;
+
+        if ($(window).innerWidth() < 901) {
+            offset = $('#copy').offset().top - 20
+        }
+
+        var fraction = scroll / ($('#copy')[0].scrollHeight - $(window).height() + offset)
         var imgscroll = $('#images')[0].scrollHeight - $('#images').outerHeight()
 
-        console.log(  scroll + ": " + (fraction)   )
+        //console.log(  scroll + ": " + (fraction)   )
 
         $('#images img').css('transform','translateY(' + (0 - (fraction * imgscroll)) + 'px)')
         $('#images').css('transform','translateY(' + (scroll) + 'px)')
