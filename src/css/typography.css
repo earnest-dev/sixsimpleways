@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Istok+Web');
+
 @font-face {
     font-family: 'Soulcraft';
     src: url('../fonts/Soulcraft.ttf') format('truetype');
@@ -39,9 +41,9 @@ h1, h3 {
 
 p {
     font-size: 18px;
-    font-family: Georgia;
+    font-family: 'Istok Web', sans-serif;
     line-height: 1.3;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 a {
