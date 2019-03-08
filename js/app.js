@@ -23,7 +23,6 @@ let imgArray = []
 $('#nav a').click(function(e) {
     e.preventDefault();
     $('#page').addClass('out')
-    $(window).scrollTop(0)
     changecol($(this).data('bg'))
 
     let delay = 500
@@ -37,6 +36,7 @@ $('#nav a').click(function(e) {
     }
 
     setTimeout(function() {
+        $(window).scrollTop(0)
         showpage(thispage)
     }, delay)
 })
