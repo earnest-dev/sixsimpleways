@@ -120,6 +120,11 @@ h2 span {
 	display: inline-block;
 }
 
+#labs {
+	width: 100%;
+	max-width: 300px;
+}
+
 @media (--narrow-window) {
 	section#nav, section.ticker {
 		transform: none !important;
