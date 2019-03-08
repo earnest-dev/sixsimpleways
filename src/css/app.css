@@ -123,6 +123,7 @@ h2 span {
 #labs {
 	width: 100%;
 	max-width: 300px;
+	padding: 10px 0;
 }
 
 @media (--narrow-window) {
