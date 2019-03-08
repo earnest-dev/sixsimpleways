@@ -136,13 +136,14 @@ h2 span {
 	}
 
 	section.scroller {
-		top: var(--column-width) !important;
+		top: var(--column-width);
 		width: 50%;
 	}
 
 	section#images {
 		position: fixed;
 		transform: none !important;
+		top: calc(2 * var(--column-width)) !important;
 	}
 
 	section.scroller#home {

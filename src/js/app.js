@@ -65,7 +65,8 @@ $(window).on('scroll', function(e){
         let offset = 0;
 
         if ($(window).innerWidth() < 901) {
-            offset = $('#copy').offset().top - 20
+            var multiplier = $(window).innerWidth() / $(window).innerHeight() * 0.9
+            offset = $('#copy').offset().top * multiplier
         }
 
         var fraction = scroll / ($('#copy')[0].scrollHeight - $(window).height() + offset)
