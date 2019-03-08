@@ -21,7 +21,7 @@ let page = false
 let imgArray = []
 
 $('#nav a').click(function(e) {
-    e.preventDefault();
+    e.preventDefault()
     $('#page').addClass('out')
     changecol($(this).data('bg'))
 
@@ -52,14 +52,6 @@ function showpage(thispage) {
         } else {
             page = true
             $('.ticker').removeClass('out')
-            
-            /*
-            var imglist = eval("imgArray." + thispage);
-            for (let i = 0; i < imglist.length; i++) {
-                console.log(imglist[i])
-                $('#images').append('<img src="img/' + thispage + '/' + imglist[i] + '">')
-            }
-            */
         }
         $("#page").removeClass('out')
     });
@@ -79,36 +71,18 @@ $(window).on('scroll', function(e){
         var fraction = scroll / ($('#copy')[0].scrollHeight - $(window).height() + offset)
         var imgscroll = $('#images')[0].scrollHeight - $('#images').outerHeight()
 
-        //console.log(  scroll + ": " + (fraction)   )
-
         $('#images img').css('transform','translateY(' + (0 - (fraction * imgscroll)) + 'px)')
         $('#images').css('transform','translateY(' + (scroll) + 'px)')
     }
-});
+})
 
 //Colours
 function changecol(newcol) {
-    document.documentElement.style.setProperty('--bgcol', newcol);
+    document.documentElement.style.setProperty('--bgcol', newcol)
 }
 
 //Ready
 $(document).ready(function() {
-    /*
-    $('#nav h2 a').each(function() {
-        let thisnum = $(this).data('page')
-        if (thisnum != 'home') {
-            $.ajax({
-                url: "imageloop.php",
-                type: "POST",
-                data: ({dir: thisnum}),
-                dataType: "json",
-                success: function (data) {
-                    imgArray[thisnum] = data
-                }
-            });
-        }
-    })
-    */
     showpage('home')
 })
 
