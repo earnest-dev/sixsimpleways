@@ -169,6 +169,10 @@ body.cta #cta a {
 	pointer-events: none;
 }
 
+#cta-stuff a:hover {
+	color: #fff;
+}
+
 
 
 @media (--narrow-window) {
