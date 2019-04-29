@@ -84,6 +84,7 @@ section.scroller {
 	min-height: 100vh;
 	border-right: 10px solid #000;
 	border-bottom: none;
+	padding-bottom: calc(20px + (var(--column-width) / 2));
 	width: calc((100% - var(--column-width)) / 2);
 }
 
@@ -91,7 +92,7 @@ section#copy {
 	left: var(--column-width)
 }
 
-section.scroller#home {
+section.scroller#home, section.scroller#cta-stuff {
 	width: 100%;
 	border: none;
 	left: 0;
@@ -101,6 +102,7 @@ section.scroller#home {
 section#images {
 	border: none;
 	padding: 0;
+	padding-bottom: calc((var(--column-width) / 2));
 	top:0;
 	left: auto;
 	right: 0;
@@ -124,7 +126,50 @@ h2 span {
 	width: 100%;
 	max-width: 300px;
 	padding: 10px 0;
+	fill: #000;
 }
+
+
+/* CTA */
+#cta-stuff {
+	color: var(--bgcol);
+	background-color: #000;
+}
+
+#cta {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+    padding-left: var(--column-width);
+    background-color: #000;
+    height: calc(var(--column-width) / 2);
+}
+
+#cta a {
+    color: var(--bgcol);
+    padding: 0 20px;
+    display: block;
+    text-align: right;
+	line-height: calc(var(--column-width) / 2);
+	opacity: 1;
+	transition: all 0.3s;
+	position: absolute;
+	top: 0;
+	width: calc(100% - var(--column-width));
+	pointer-events: initial;
+}
+
+body.cta {
+	background-color: #000 !important;
+}
+
+body.cta #cta a {
+	opacity: 0;
+	pointer-events: none;
+}
+
+
 
 @media (--narrow-window) {
 	section#nav, section.ticker {
@@ -152,7 +197,7 @@ h2 span {
 		top: calc(2 * var(--column-width)) !important;
 	}
 
-	section.scroller#home {
+	section.scroller#home, section.scroller#cta-stuff {
 		top: 0 !important;
 	}
 
@@ -169,5 +214,13 @@ h2 span {
 	section.scroller {
 		width: 100%;
 		border: none;
+	}
+
+	#cta {
+		padding: 0;
+	}
+
+	#cta a {
+		width: 100%;
 	}
 }
