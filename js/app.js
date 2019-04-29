@@ -20,19 +20,25 @@ function tickertape() {
 let page = false
 let imgArray = []
 
-$('#nav a').click(function(e) {
+$('.nav a').click(function(e) {
     e.preventDefault()
-    $('#page').addClass('out')
-    changecol($(this).data('bg'))
 
+    $('#page').addClass('out')
     let delay = 500
 
     let thispage = $(this).data('page')
-    if (thispage == 'home') {
+    if (thispage == 'home' || thispage == 'cta') {
         delay = 800
         $('.ticker').addClass('out')
     } else {
         $('.ticker').removeClass('out')
+    }
+
+    if (thispage == 'cta') {
+        $('body').addClass('cta')
+    } else {
+        $('body').removeClass('cta')
+        changecol($(this).data('bg'))
     }
 
     setTimeout(function() {
@@ -46,7 +52,7 @@ function showpage(thispage) {
         $("#page").html( data )
 
         tickertape()
-        if (thispage == 'home') {
+        if (thispage == 'home' || thispage == 'cta') {
             page = false
             $('.ticker').addClass('out')
         } else {
