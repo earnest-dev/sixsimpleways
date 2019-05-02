@@ -173,7 +173,9 @@ body.cta #cta a {
 	color: #fff;
 }
 
-
+a.current {
+    text-decoration: underline;
+}
 
 @media (--narrow-window) {
 	section#nav, section.ticker {

@@ -48,6 +48,8 @@ $('.nav a').click(function(e) {
 })
 
 function showpage(thispage) {
+    $('.current').removeClass('current')
+    $('.nav a[data-page="' + thispage + '"]').addClass('current')
     $.get( "page-" + thispage + ".html", function( data ) {
         $("#page").html( data )
 
