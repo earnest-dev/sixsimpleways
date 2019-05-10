@@ -25,5 +25,7 @@
     "postcss-preset-env": "^6.5.0",
     "vinyl-ftp": "^0.6.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "del": "^4.1.1"
+  }
 }
